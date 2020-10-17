@@ -4,9 +4,6 @@ import {
     GoogleMap,
     Marker
 } from 'react-google-maps';
-import {
-    withScriptjs
-} from 'react-google-maps';
 import mark from '../../assets/images/icons/other.png';
 
 const DEFAULT_LAT: number = 56.845464;
@@ -62,4 +59,4 @@ const Map = ({ places, coordinates = {}, onClick }: MapInterface) => {
     );
 };
 
-export default withScriptjs(withGoogleMap(Map));
+export default withGoogleMap(Map);

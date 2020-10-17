@@ -3,14 +3,18 @@ import Paper from '../../reusable/Paper/Paper';
 import Map from '../Map';
 import Button from '../../reusable/Button';
 import Typography from '../../reusable/Typography';
-import TextField from '../../reusable/TextFileld';
+import GoogleAutocompleteInput from '../Autocomplete';
 
 const styles = require('./index.module.scss');
 
 const OrderTaxi = () => (
     <Paper color='white' className={styles['order']}>
         <div className={styles['order__form']}>
-            <TextField id='1'/>
+            <GoogleAutocompleteInput
+                onBlur={() => {}} saveAddress={() => {}}
+                error={''}
+                coords={{}}
+                clearAddressResult={() => {}}/>
         </div>
         <div className={styles['order__details']}>
             <div className={styles['order__map']}>
@@ -18,8 +22,6 @@ const OrderTaxi = () => (
                     onClick={() => {
                     }}
                     places={[]}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDFxtJWH9NvWiLnWTNFjVQXlkipcgU6U`}
-                    loadingElement={<div className={styles['order__map-element']}/>}
                     containerElement={<div className={styles['order__map-element']}/>}
                     mapElement={<div className={styles['order__map-element']}/>}
                 />

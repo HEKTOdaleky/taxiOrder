@@ -1,0 +1,110 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "no-shadowed-variable": false,
+    "no-string-literal": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": false,
+    "no-unused-variable": [true, {"ignore-pattern": "^_"}],
+    "no-unused-expression": [
+      true,
+      "allow-fast-null-checks"
+    ],
+    "no-var-keyword": true,
+    "object-literal-sort-keys": false,
+    "member-access": false,
+    "member-ordering": [
+      false,
+      {
+        "order": [
+          "protected-static-field",
+          "protected-static-method",
+          "public-static-field",
+          "public-static-method",
+          "private-static-field",
+          "private-static-method",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+    "ordered-imports": false,
+    "trailing-comma": false,
+    "interface-name": false,
+    "jsx-alignment": false,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "no-debugger": false,
+    "no-duplicate-imports": false,
+    "no-empty-interface": false,
+    "no-empty": [
+      true,
+      "allow-empty-catch",
+      "allow-empty-functions"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "import-name": false,
+    "no-invalid-template-strings": false,
+    "import-spacing": true,
+    "arrow-parens": false,
+    "ban-types": false,
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    },
+    "function-name": [true, {
+      "method-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$",
+      "private-method-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$",
+      "protected-method-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$",
+      "static-method-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$",
+      "function-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$"
+    }],
+    "no-this-assignment": [
+      true,
+      {
+        "allowed-names": [
+          "^self$"
+        ],
+        "allow-destructuring": true
+      }
+    ],
+    "max-line-length": [
+      true,
+      140
+    ],
+    "max-classes-per-file": false,
+    "object-literal-shorthand": false,
+    "no-console": false,
+    "no-object-literal-type-assertion": false,
+    "no-namespace": false,
+    "prefer-conditional-expression": false,
+    "no-var-requires": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false
+  }
+}

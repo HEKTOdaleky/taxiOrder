@@ -1,0 +1,1 @@
+export const joinStyles = (...args: string[] | undefined[]) => args.join(' ').trim().replace(/[ \t]{2,}/g, ' ');

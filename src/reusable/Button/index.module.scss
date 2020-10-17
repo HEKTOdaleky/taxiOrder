@@ -1,0 +1,90 @@
+@import '../../assets/style/vars';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1;
+  font-weight: 500;
+  transition: opacity 250ms ease-in-out;
+  min-width: 160px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  user-select: none;
+
+  &:hover:enabled {
+    opacity: 0.8;
+  }
+
+  &__color {
+    &-default {
+      background: $button-color--grey;
+      border-color: $button-color--grey;
+    }
+
+    &-orange {
+      background: $button-color--orange;
+      border-color: $button-color--orange;
+      color: $text-color--white;
+    }
+
+    &-red {
+      background-color: $button-color--red;
+      border-color: $button-color--red;
+      color: $text-color--white;
+    }
+  }
+
+  &__variant {
+    &-outlined {
+      background-color: transparent;
+    }
+
+    &-contained {
+      border-color: transparent;
+    }
+
+    &-text {
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  &__inline {
+    display: inline-flex;
+  }
+
+  &__disabled {
+    // pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &__full-width {
+    width: 100%;
+  }
+
+  &__size-default {
+    padding: 11px 20px;
+    font-size: 12px;
+  }
+
+  &__size-small {
+    padding: 8px 11px;
+    font-size: 14px;
+  }
+
+  &__size-collapse {
+    padding: 1px 6px 1px 1px;
+    font-size: 14px;
+  }
+
+  &:disabled {
+    background: $button-color--disabled;
+  }
+}

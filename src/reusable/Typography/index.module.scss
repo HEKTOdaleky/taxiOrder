@@ -1,0 +1,81 @@
+@import '../../assets/style/vars';
+
+.typography {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  margin: 0;
+
+  &__h1 {
+    font-size: 30px;
+  }
+
+  &__h2 {
+    font-size: 28px;
+  }
+
+  &__h3 {
+    font-size: 26px;
+  }
+
+  &__h4 {
+    font-size: 22px;
+  }
+
+  &__h5 {
+    font-size: 20px;
+  }
+
+  &__subtitle1 {
+    font-size: 18px;
+  }
+
+  &__subtitle2 {
+    font-size: 16px;
+  }
+
+  &__body1 {
+    font-size: 14px;
+  }
+
+  &__body2 {
+    font-size: 12px;
+  }
+
+  &__caption {
+    font-size: 10px;
+  }
+
+  &__overline {
+    font-size: 8px;
+  }
+
+  &__color {
+    &-black {
+      color: $text-color--black;
+    }
+
+    &-grey {
+      color: $text-color--grey;
+    }
+
+    &-light-grey {
+      color: $text-color--light-grey;
+    }
+
+    &-purple {
+      color: $text-color--purple;
+    }
+
+    &-red {
+      color: $text-color--red;
+    }
+
+    &-orange {
+      color: $text-color--orange;
+    }
+
+    &-white {
+      color: $text-color--white;
+    }
+  }
+}

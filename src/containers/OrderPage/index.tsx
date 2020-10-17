@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import OrderTaxi from '../../components/OrderTaxi';
 import { ThunkDispatch } from 'redux-thunk';
@@ -23,6 +23,11 @@ interface OrderPageInterface {
 
 const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderStore }: OrderPageInterface) => {
 
+    useEffect(() => {
+        getAvailableCarsData();
+    }, []);
+
+    console.log('orderStore.availableCars', orderStore.availableCars);
 
     return (
         <div color='grey' className={styles['order-page']}>

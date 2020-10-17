@@ -7,8 +7,8 @@ import {queryGet} from '../../api/apiConfig';
 export const getAvailableCarsData = (): ThunkAction<Promise<void>, {}, {}, AnyAction> =>
     (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
         dispatch(fetchAvailableCarsPending());
-        return queryGet(`/find`).then((response: any) => {
-            dispatch(fetchAvailableCarsSuccess(response.data));
+        return queryGet(`/home`).then(({data}) => {
+            dispatch(fetchAvailableCarsSuccess(data && data.data['crews_info']));
         }, () => {
             dispatch(fetchAvailableCarsFailure('error'));
         });

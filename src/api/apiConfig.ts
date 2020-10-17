@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-export const apiUrl = 'localhost:8001';
+export const apiUrl = 'http://localhost:8001';
 
 export const queryInstance = axios.create({
     baseURL: apiUrl,
+    headers: {
+
+    }
 });
 
 export const queryGet = (url: string, config = {}) => {

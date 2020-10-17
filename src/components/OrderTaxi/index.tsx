@@ -10,7 +10,7 @@ const styles = require('./index.module.scss');
 
 interface OrderTaxiInterface {
     getAvailableCarsData: () => void;
-    availableCars: CarInterface;
+    availableCars: CarInterface[];
 }
 
 const OrderTaxi = ({}: OrderTaxiInterface) => (

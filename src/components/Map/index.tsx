@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import {
     withGoogleMap,
     GoogleMap,
@@ -16,7 +16,7 @@ const DEFAULT_ZOOM: number = 12;
 interface MapInterface {
     places: MapPlacesInterface[];
     coordinates: MapPlacesInterface;
-    onClick?: () => void;
+    onClick: (coords: CoordsInterface) => void;
     foundAddress?: CoordsInterface;
 }
 
@@ -26,9 +26,12 @@ interface MapPlacesInterface {
     idx: number;
 }
 
-const Map = ({ places, coordinates, onClick, foundAddress }: MapInterface) => {
+const Map = ({places, coordinates, onClick, foundAddress}: MapInterface) => {
 
-    const center = { lat: (coordinates && coordinates.lat) || DEFAULT_LAT, lng: (coordinates && coordinates.lng) || DEFAULT_LNG };
+    const center = {
+        lat: (coordinates && coordinates.lat) || DEFAULT_LAT,
+        lng: (coordinates && coordinates.lng) || DEFAULT_LNG
+    };
     const defaultFirstMarker = places && places[0];
     const defaultCenter = defaultFirstMarker || center;
 
@@ -38,6 +41,7 @@ const Map = ({ places, coordinates, onClick, foundAddress }: MapInterface) => {
             defaultCenter={defaultCenter}
             zoom={DEFAULT_ZOOM}
             center={defaultCenter}
+            onClick={e => onClick({ lat: e.latLng.lat(), lng: e.latLng.lng() })}
         >
             {places.map(({lat, lng, idx}: MapPlacesInterface) => {
                 if (!lat) {
@@ -53,11 +57,10 @@ const Map = ({ places, coordinates, onClick, foundAddress }: MapInterface) => {
                             icon={{
                                 url: mark,
                             }}
-                            onClick={onClick}
                         />
                     </Fragment>
                 );
-            }) }
+            })}
             <Marker
                 position={foundAddress}
                 icon={{

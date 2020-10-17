@@ -12,7 +12,7 @@ export interface CarInterface {
 }
 
 export interface CoordsInterface {
-    'lat'?: number;
-    'lng'?: number;
+    'lat': number;
+    'lng': number;
 }
 

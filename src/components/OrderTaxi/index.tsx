@@ -33,8 +33,7 @@ const mapMarkers = [...availableCars.map(item => ({lat: item.lat, lng: item.lng,
             <div className={styles['order__details']}>
                 <div className={styles['order__map']}>
                     <Map
-                        onClick={() => {
-                        }}
+                        onClick={setFoundAddress}
                         // @ts-ignore
                         places={mapMarkers}
                         foundAddress={foundAddress}

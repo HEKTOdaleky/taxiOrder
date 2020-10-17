@@ -1,0 +1,19 @@
+.car-item {
+  margin-bottom: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  &__img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-image: url(../../../assets/images/icons/taxi.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__section {
+    padding: 2px 5px;
+  }
+}

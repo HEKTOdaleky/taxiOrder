@@ -4,14 +4,6 @@
   padding: 40px;
   border-radius: 7px;
 
-  @media screen and (max-width: $medium) {
-    padding: 20px 40px;
-  }
-
-  @media screen and (max-width: $small) {
-    padding: 20px;
-  }
-
   &__color {
     &-white {
       background: $background-color--white;

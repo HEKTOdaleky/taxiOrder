@@ -4,10 +4,16 @@ import Map from '../Map';
 import Button from '../../reusable/Button';
 import Typography from '../../reusable/Typography';
 import GoogleAutocompleteInput from '../Autocomplete';
+import {CarInterface} from '../../redux/order/models';
 
 const styles = require('./index.module.scss');
 
-const OrderTaxi = () => (
+interface OrderTaxiInterface {
+    getAvailableCarsData: () => void;
+    availableCars: CarInterface;
+}
+
+const OrderTaxi = ({}: OrderTaxiInterface) => (
     <Paper color='white' className={styles['order']}>
         <div className={styles['order__form']}>
             <GoogleAutocompleteInput

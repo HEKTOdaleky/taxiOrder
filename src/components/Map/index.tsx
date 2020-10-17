@@ -4,29 +4,29 @@ import {
     GoogleMap,
     Marker
 } from 'react-google-maps';
-import mark from '../../assets/images/icons/other.png';
+import mark from '../../assets/images/icons/other.svg';
 
 const DEFAULT_LAT: number = 56.845464;
 const DEFAULT_LNG: number = 53.211446;
 const DEFAULT_ZOOM: number = 12;
 
 interface MapInterface {
-    places?: any;
-    coordinates?: any;
+    places: MapPlacesInterface[];
+    coordinates: MapPlacesInterface;
     onClick?: () => void;
 }
 
-const Map = ({ places, coordinates = {}, onClick }: MapInterface) => {
+interface MapPlacesInterface {
+    lat: string;
+    lng: string;
+    idx: number;
+}
+
+const Map = ({ places, coordinates, onClick }: MapInterface) => {
 
     const center = { lat: (coordinates && coordinates.lat) || DEFAULT_LAT, lng: (coordinates && coordinates.lng) || DEFAULT_LNG };
     const defaultFirstMarker = places && places[0];
-    const defaultCenter = defaultFirstMarker
-    && defaultFirstMarker.attributes && defaultFirstMarker.attributes.coordinates ?
-        {
-            lat: parseFloat(defaultFirstMarker.attributes.coordinates.lat),
-            lng: parseFloat(defaultFirstMarker.attributes.coordinates.lng)
-        } :
-        center;
+    const defaultCenter = defaultFirstMarker || center;
 
     return (
         <GoogleMap
@@ -35,17 +35,16 @@ const Map = ({ places, coordinates = {}, onClick }: MapInterface) => {
             zoom={DEFAULT_ZOOM}
             center={defaultCenter}
         >
-            {places.map((place: any) => {
-                const { attributes: { coordinates } } = place;
-                if (!coordinates) {
+            {places.map(({lat, lng, idx}: MapPlacesInterface) => {
+                if (!lat) {
                     return null;
                 }
                 return (
-                    <Fragment key={place.id}>
+                    <Fragment key={idx}>
                         <Marker
                             position={{
-                                lat: parseFloat(coordinates.lat),
-                                lng: parseFloat(coordinates.lng)
+                                lat: parseFloat(lat),
+                                lng: parseFloat(lng)
                             }}
                             icon={{
                                 url: mark,

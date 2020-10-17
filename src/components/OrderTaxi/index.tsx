@@ -28,7 +28,8 @@ const OrderTaxi = ({availableCars}: OrderTaxiInterface) => (
                 <Map
                     onClick={() => {
                     }}
-                    places={[]}
+                    // @ts-ignore
+                    places={availableCars.map(item => ({lat: item.lat, lng: item.lng, idx: item['crew_id']}))}
                     containerElement={<div className={styles['order__map-element']}/>}
                     mapElement={<div className={styles['order__map-element']}/>}
                 />
@@ -41,7 +42,10 @@ const OrderTaxi = ({availableCars}: OrderTaxiInterface) => (
             <Button color='orange'>
                 <Typography
                     type='Body1'
-                    color='white'>Order</Typography>
+                    fontWeight={700}
+                    color='white'>
+                    Заказать
+                </Typography>
             </Button>
         </div>
     </Paper>

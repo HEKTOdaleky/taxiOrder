@@ -7,7 +7,7 @@ export interface CarInterface {
     'driver_name': string;
     'driver_phone': string;
     'lat': number;
-    'lon': number;
+    'lng': number;
     'distance': number;
 }
 

@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 // @ts-ignore
 import GoogleAutocomplete from 'react-google-autocomplete';
 import InputHOC from '../../reusable/InputHOC';
+import { CoordsInterface } from '../../redux/order/models';
 
-const CONTAINER_STYLE = {
-    height: '100%',
-    width: '100%'
-};
+const styles = require('./index.module.scss');
 
 const GOOGLE_AUTOCOMPLETE_DEFAULT_PROPS = {
     placeholder: 'Ижевск, Пушкинская 144',
@@ -16,15 +14,15 @@ const GOOGLE_AUTOCOMPLETE_DEFAULT_PROPS = {
     }
 };
 
-const ERROR_MESSAGE = 'The postcode cannot be found. Please enter your full address';
-const ERROR_CANNOT_FOUND = 'Address not found. If you can\'t find your address, enter your post code in the search bar';
+const ERROR_MESSAGE = 'Ересь какая то';
+const ERROR_CANNOT_FOUND = 'Адрес не найден, проверьте корректность. Начните вводить данные, например: Ижевск, Пушкинская 144';
 
 interface GoogleAutocompleteInterface {
-    saveAddress: (a: any, b: any) => void;
+    saveAddress: (coords: CoordsInterface) => void;
     onBlur: () => void;
     clearAddressResult: () => void;
-    error: any;
-    coords: any;
+    error: string;
+    coords?: CoordsInterface;
 }
 
 const GoogleAutocompleteInput = ({saveAddress, onBlur, clearAddressResult, error, coords}: GoogleAutocompleteInterface) => {
@@ -40,16 +38,8 @@ const GoogleAutocompleteInput = ({saveAddress, onBlur, clearAddressResult, error
                 lng: lng()
             };
 
-
-            const address: any = {};
-            place['address_components'].forEach((item: any) => {
-                if (item.types && !item.types.includes('country')) {
-                    address[item.types[0]] = item['long_name'];
-                }
-            });
-
-            if (address['postal_code']) {
-                saveAddress(address, coords);
+            if (place['formatted_address']) {
+                saveAddress(coords);
             }
         }
     };
@@ -68,14 +58,14 @@ const GoogleAutocompleteInput = ({saveAddress, onBlur, clearAddressResult, error
     };
 
 
-    const isError = error || (isChanged && isBlur && !coords.lat);
+    const isError = error || (isChanged && isBlur && (!coords || !coords.lat));
     const errorMessage = (isChanged && isBlur) ? ERROR_CANNOT_FOUND : ERROR_MESSAGE;
 
     return (
-        <div style={CONTAINER_STYLE}>
+        <div className={styles['autocomplete']}>
             <InputHOC
-                error={isError && errorMessage}
-                label='From'>
+                error={isError ? errorMessage : ''}
+                label='Откудв'>
             <GoogleAutocomplete
                 onChange={onChange}
                 onBlur={onBlurAutocomplete}

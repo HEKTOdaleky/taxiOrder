@@ -5,6 +5,9 @@ import {
     Marker
 } from 'react-google-maps';
 import mark from '../../assets/images/icons/other.svg';
+import user from '../../assets/images/icons/user.svg';
+
+import {CoordsInterface} from '../../redux/order/models';
 
 const DEFAULT_LAT: number = 56.845464;
 const DEFAULT_LNG: number = 53.211446;
@@ -14,6 +17,7 @@ interface MapInterface {
     places: MapPlacesInterface[];
     coordinates: MapPlacesInterface;
     onClick?: () => void;
+    foundAddress?: CoordsInterface;
 }
 
 interface MapPlacesInterface {
@@ -22,7 +26,7 @@ interface MapPlacesInterface {
     idx: number;
 }
 
-const Map = ({ places, coordinates, onClick }: MapInterface) => {
+const Map = ({ places, coordinates, onClick, foundAddress }: MapInterface) => {
 
     const center = { lat: (coordinates && coordinates.lat) || DEFAULT_LAT, lng: (coordinates && coordinates.lng) || DEFAULT_LNG };
     const defaultFirstMarker = places && places[0];
@@ -54,6 +58,11 @@ const Map = ({ places, coordinates, onClick }: MapInterface) => {
                     </Fragment>
                 );
             }) }
+            <Marker
+                position={foundAddress}
+                icon={{
+                    url: user,
+                }}/>
         </GoogleMap>
     );
 };

@@ -11,3 +11,8 @@ export interface CarInterface {
     'distance': number;
 }
 
+export interface CoordsInterface {
+    'lat'?: number;
+    'lng'?: number;
+}
+

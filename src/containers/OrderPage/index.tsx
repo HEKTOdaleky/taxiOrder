@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import OrderTaxi from '../../components/OrderTaxi';
 import { ThunkDispatch } from 'redux-thunk';
-import {getAvailableCarsData} from '../../redux/order/actions';
+import {createOrder, getAvailableCarsData} from '../../redux/order/actions';
 import {RootState} from '../../redux';
 import {OrderState} from '../../redux/order/reducers';
-import {RequestCarInterface} from '../../redux/order/models';
+import {OrderInterface, RequestCarInterface} from '../../redux/order/models';
 
 const styles = require('./index.module.scss');
 
@@ -15,23 +15,25 @@ interface StateProps {
 
 interface DispatchProps {
     getAvailableCarsData: (address: RequestCarInterface) => void;
+    createOrder: (data: OrderInterface) => void;
 }
 
 interface OrderPageInterface {
     getAvailableCarsData: (address: RequestCarInterface) => void;
+    createOrder: (data: OrderInterface) => void;
     orderStore: OrderState;
 }
 
-const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderStore }: OrderPageInterface) => {
+const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderStore , createOrder}: OrderPageInterface) => {
     return (
         <div color='grey' className={styles['order-page']}>
             <OrderTaxi
+                createOrder={createOrder}
                 getAvailableCarsData={getAvailableCarsData}
                 availableCars={orderStore.availableCars}/>
         </div>
     );
 };
-
 
 const MapStateToProps = (states: RootState): StateProps => {
     return {
@@ -42,6 +44,7 @@ const MapStateToProps = (states: RootState): StateProps => {
 const MapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps => {
     return {
         getAvailableCarsData: (address: RequestCarInterface) => dispatch(getAvailableCarsData(address)),
+        createOrder: (data: OrderInterface) => dispatch(createOrder(data))
     };
 };
 

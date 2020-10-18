@@ -3,7 +3,13 @@ import Paper from '../../reusable/Paper/Paper';
 import Map from '../Map';
 import Button from '../../reusable/Button';
 import Typography from '../../reusable/Typography';
-import {CarInterface, CoordsInterface, RequestCarInterface} from '../../redux/order/models';
+import {
+    CarInterface,
+    CoordsInterface,
+    RequestCarInterface,
+    AddressInterface,
+    OrderInterface
+} from '../../redux/order/models';
 import CarList from '../CarList';
 import {checkCoords, sortNearestCar} from '../../common/utils';
 import PlacesAutocomplete from '../SecondAutocomlpete';
@@ -14,27 +20,22 @@ const styles = require('./index.module.scss');
 interface OrderTaxiInterface {
     getAvailableCarsData: (address: RequestCarInterface) => void;
     availableCars: CarInterface[];
+    createOrder: (data: OrderInterface) => void;
 }
 
-const OrderTaxi = ({availableCars, getAvailableCarsData}: OrderTaxiInterface) => {
+const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder}: OrderTaxiInterface) => {
     const [foundAddress, setFoundAddress] = useState<CoordsInterface>();
     const [foundFormattedAddress, setFormattedAddress] = useState<string>('');
     const [errorSending, setError] = useState<string>('');
 
-    const sendHandler = () => {
-        if (foundAddress) {
+    const getCarsHandler = (data: AddressInterface) => {
+        if (data) {
             getAvailableCarsData({
                 'source_time': new Date().getTime(),
                 'addresses': [
-                    {
-                        'address': foundFormattedAddress,
-                        'lat': foundAddress.lat,
-                        'lon': foundAddress.lng
-                    }
+                    data
                 ]
             });
-        } else {
-            setError('Обязательное поле');
         }
     };
     const mapMarkers = [...availableCars.map(item => ({lat: item.lat, lng: item.lng, idx: item['crew_id']}))];
@@ -42,8 +43,8 @@ const OrderTaxi = ({availableCars, getAvailableCarsData}: OrderTaxiInterface) =>
     const mapClickHandler = async (coords: CoordsInterface) => {
         setError('');
         if (coords.lng) {
-            const result = await checkCoords(coords);
-            setFormattedAddress(result);
+            const address = await checkCoords(coords);
+            setFormattedAddress(address);
         }
     };
 
@@ -51,6 +52,27 @@ const OrderTaxi = ({availableCars, getAvailableCarsData}: OrderTaxiInterface) =>
         setError('');
         setFoundAddress(coords);
         setFormattedAddress(address);
+        getCarsHandler({...coords, address});
+    };
+
+    const createOrderHandler = () => {
+        const car = availableCars[0];
+
+        if (car) {
+            createOrder({
+                'source_time': new Date().getTime(),
+                'addresses': [
+                    {
+                        lat: 0,
+                        lng: 0,
+                        address: foundFormattedAddress
+                    }
+                ],
+                crew_id: car.crew_id
+            });
+        } else {
+            setError('Некорректный адрес');
+        }
     };
 
     return (
@@ -77,7 +99,7 @@ const OrderTaxi = ({availableCars, getAvailableCarsData}: OrderTaxiInterface) =>
                     />
                 </div>
 
-                < CarList
+                <CarList
                     foundAddress={foundAddress}
                     availableCars={sortedAvailableCars}
                     className={styles['order__taxi-list']}/>
@@ -85,8 +107,8 @@ const OrderTaxi = ({availableCars, getAvailableCarsData}: OrderTaxiInterface) =>
             <div className={styles['order__send']}>
                 <Button
                     color='orange'
-                    disabled={!!errorSending}
-                    onClick={sendHandler}>
+                    onClick={createOrderHandler}
+                    disabled={!!errorSending}>
                     <Typography
                         type='Body1'
                         fontWeight={700}

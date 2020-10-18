@@ -16,14 +16,17 @@ export interface CoordsInterface {
     'lng': number;
 }
 
-interface AddressInterface {
+export interface AddressInterface {
     'address': string;
     'lat': number;
-    'lon': number;
+    'lng': number;
 }
 
 export interface RequestCarInterface {
     'source_time': number;
-        'addresses': AddressInterface[];
+    'addresses': AddressInterface[];
 }
 
+export interface OrderInterface extends RequestCarInterface {
+    'crew_id': number;
+}

@@ -28,6 +28,7 @@ const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderSt
     return (
         <div color='grey' className={styles['order-page']}>
             <OrderTaxi
+                createSuccess={!orderStore.orderCarPending && !orderStore.orderCarFailure}
                 createOrder={createOrder}
                 getAvailableCarsData={getAvailableCarsData}
                 availableCars={orderStore.availableCars}/>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Paper from '../../reusable/Paper/Paper';
 import Map from '../Map';
 import Button from '../../reusable/Button';
@@ -21,12 +21,20 @@ interface OrderTaxiInterface {
     getAvailableCarsData: (address: RequestCarInterface) => void;
     availableCars: CarInterface[];
     createOrder: (data: OrderInterface) => void;
+    createSuccess: boolean;
 }
 
-const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder}: OrderTaxiInterface) => {
+const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder, createSuccess}: OrderTaxiInterface) => {
     const [foundAddress, setFoundAddress] = useState<CoordsInterface>();
     const [foundFormattedAddress, setFormattedAddress] = useState<string>('');
     const [errorSending, setError] = useState<string>('');
+
+    useEffect(() => {
+        if (!createSuccess) {
+            setFoundAddress(undefined);
+            setFormattedAddress('');
+        }
+    }, [createSuccess]);
 
     const getCarsHandler = (data: AddressInterface) => {
         if (data) {

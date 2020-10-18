@@ -12,14 +12,14 @@ import Paper from '../../reusable/Paper/Paper';
 const styles = require('./index.module.scss');
 
 interface GoogleAutocompleteInterface {
-    saveAddress: (coords: CoordsInterface) => void;
+    saveAddress: (coords: CoordsInterface, address: string) => void;
     clearAddressResult: () => void;
     error: string;
     coords?: CoordsInterface;
     customValue: string;
 }
 
-const PlacesAutocomplete = ({saveAddress, customValue}: GoogleAutocompleteInterface) => {
+const PlacesAutocomplete = ({saveAddress, customValue, error}: GoogleAutocompleteInterface) => {
     const {
         ready,
         value,
@@ -47,17 +47,12 @@ const PlacesAutocomplete = ({saveAddress, customValue}: GoogleAutocompleteInterf
         setValue(e.target.value);
     };
 
-    const handleSelect = ({description}: any) => () => {
+    const handleSelect = ({description}: any) => async () => {
         setValue(description, false);
         clearSuggestions();
-        getGeocode({address: description})
-            .then((results) => getLatLng(results[0]))
-            .then(({lat, lng}) => {
-                saveAddress({lat, lng});
-            })
-            .catch((error) => {
-                console.log('😱 Error: ', error);
-            });
+        const results = await getGeocode({address: description});
+        const {lat, lng} = await getLatLng(results[0]);
+        saveAddress({lat, lng}, results[0]['formatted_address']);
     };
 
     const renderSuggestions = () =>
@@ -80,6 +75,7 @@ const PlacesAutocomplete = ({saveAddress, customValue}: GoogleAutocompleteInterf
         <div ref={ref} className={styles['autocomplete']}>
             <TextField
                 id='autocomplete'
+                error={error}
                 fullWidth
                 label='Откуда'
                 value={value}

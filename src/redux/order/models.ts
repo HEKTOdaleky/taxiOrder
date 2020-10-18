@@ -16,3 +16,14 @@ export interface CoordsInterface {
     'lng': number;
 }
 
+interface AddressInterface {
+    'address': string;
+    'lat': number;
+    'lon': number;
+}
+
+export interface RequestCarInterface {
+    'source_time': number;
+        'addresses': AddressInterface[];
+}
+

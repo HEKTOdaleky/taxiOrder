@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import OrderTaxi from '../../components/OrderTaxi';
 import { ThunkDispatch } from 'redux-thunk';
 import {getAvailableCarsData} from '../../redux/order/actions';
 import {RootState} from '../../redux';
 import {OrderState} from '../../redux/order/reducers';
+import {RequestCarInterface} from '../../redux/order/models';
 
 const styles = require('./index.module.scss');
 
@@ -13,20 +14,15 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    getAvailableCarsData: () => void;
+    getAvailableCarsData: (address: RequestCarInterface) => void;
 }
 
 interface OrderPageInterface {
-    getAvailableCarsData: () => void;
+    getAvailableCarsData: (address: RequestCarInterface) => void;
     orderStore: OrderState;
 }
 
 const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderStore }: OrderPageInterface) => {
-
-    useEffect(() => {
-        getAvailableCarsData();
-    }, []);
-
     return (
         <div color='grey' className={styles['order-page']}>
             <OrderTaxi
@@ -45,7 +41,7 @@ const MapStateToProps = (states: RootState): StateProps => {
 
 const MapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps => {
     return {
-        getAvailableCarsData: () => dispatch(getAvailableCarsData()),
+        getAvailableCarsData: (address: RequestCarInterface) => dispatch(getAvailableCarsData(address)),
     };
 };
 

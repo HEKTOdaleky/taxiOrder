@@ -1,0 +1,32 @@
+.loader {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120%;
+  background-color: rgba(255, 255, 266, 0.9);
+  z-index: 999999;
+
+  &__icon {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/images/icons/loader.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: heartbeat 1.8s infinite;
+  }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

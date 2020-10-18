@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import OrderTaxi from '../../components/OrderTaxi';
-import { ThunkDispatch } from 'redux-thunk';
+import {ThunkDispatch} from 'redux-thunk';
 import {createOrder, getAvailableCarsData} from '../../redux/order/actions';
 import {RootState} from '../../redux';
 import {OrderState} from '../../redux/order/reducers';
 import {OrderInterface, RequestCarInterface} from '../../redux/order/models';
+import Loader from "../../reusable/Loader";
 
 const styles = require('./index.module.scss');
 
@@ -24,17 +25,20 @@ interface OrderPageInterface {
     orderStore: OrderState;
 }
 
-const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderStore , createOrder}: OrderPageInterface) => {
+const OrderPage: React.FC<OrderPageInterface> = ({getAvailableCarsData, orderStore, createOrder}: OrderPageInterface) => {
     return (
-        <div color='grey' className={styles['order-page']}>
-            <OrderTaxi
-                createPending={orderStore.orderCarPending}
-                createFailure={orderStore.orderCarFailure}
-                availableCarPending={orderStore.isGetAvailablePending}
-                createOrder={createOrder}
-                getAvailableCarsData={getAvailableCarsData}
-                availableCars={orderStore.availableCars}/>
-        </div>
+        <>
+            {(orderStore.orderCarPending || orderStore.isGetAvailablePending) && <Loader/>}
+            <div color='grey' className={styles['order-page']}>
+                <OrderTaxi
+                    createPending={orderStore.orderCarPending}
+                    createFailure={orderStore.orderCarFailure}
+                    availableCarPending={orderStore.isGetAvailablePending}
+                    createOrder={createOrder}
+                    getAvailableCarsData={getAvailableCarsData}
+                    availableCars={orderStore.availableCars}/>
+            </div>
+        </>
     );
 };
 

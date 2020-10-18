@@ -11,7 +11,7 @@ import {
     OrderInterface
 } from '../../redux/order/models';
 import CarList from '../CarList';
-import {checkCoords, sortNearestCar} from '../../common/utils';
+import {checkCoords, sortNearestCar, getCurrentDate} from '../../common/utils';
 import PlacesAutocomplete from '../SecondAutocomlpete';
 import FoundCar from '../FoundCar';
 
@@ -21,25 +21,28 @@ interface OrderTaxiInterface {
     getAvailableCarsData: (address: RequestCarInterface) => void;
     availableCars: CarInterface[];
     createOrder: (data: OrderInterface) => void;
-    createSuccess: boolean;
+    createPending: boolean;
+    createFailure: boolean;
+    availableCarPending: boolean;
 }
 
-const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder, createSuccess}: OrderTaxiInterface) => {
+const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder, createPending,
+                       createFailure, availableCarPending}: OrderTaxiInterface) => {
     const [foundAddress, setFoundAddress] = useState<CoordsInterface>();
     const [foundFormattedAddress, setFormattedAddress] = useState<string>('');
     const [errorSending, setError] = useState<string>('');
 
     useEffect(() => {
-        if (!createSuccess) {
+        if (!createPending && !createFailure) {
             setFoundAddress(undefined);
             setFormattedAddress('');
         }
-    }, [createSuccess]);
+    }, [createPending, createFailure]);
 
     const getCarsHandler = (data: AddressInterface) => {
         if (data) {
             getAvailableCarsData({
-                'source_time': new Date().getTime(),
+                'source_time': getCurrentDate(),
                 'addresses': [
                     data
                 ]
@@ -68,7 +71,7 @@ const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder, createSucc
 
         if (car) {
             createOrder({
-                'source_time': new Date().getTime(),
+                'source_time': getCurrentDate(),
                 'addresses': [
                     {
                         lat: 0,
@@ -116,7 +119,7 @@ const OrderTaxi = ({availableCars, getAvailableCarsData, createOrder, createSucc
                 <Button
                     color='orange'
                     onClick={createOrderHandler}
-                    disabled={!!errorSending}>
+                    disabled={!!errorSending || availableCarPending || createPending}>
                     <Typography
                         type='Body1'
                         fontWeight={700}

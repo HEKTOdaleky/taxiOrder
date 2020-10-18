@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {CarInterface, CoordsInterface} from '../redux/order/models';
+import moment from 'moment';
 
 export const joinStyles = (...args: string[] | undefined[]) => args.join(' ').trim().replace(/[ \t]{2,}/g, ' ');
 
@@ -37,3 +38,5 @@ export const  sortNearestCar = (user: CoordsInterface, cars: CarInterface[]) => 
         return -1; }
     return 0;
 });
+
+export const getCurrentDate = ():number => Number(moment().format('YYYY MM DD mm ss').split(' ').join(''));

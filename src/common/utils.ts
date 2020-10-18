@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CoordsInterface } from '../redux/order/models';
+import {CarInterface, CoordsInterface} from '../redux/order/models';
 
 export const joinStyles = (...args: string[] | undefined[]) => args.join(' ').trim().replace(/[ \t]{2,}/g, ' ');
 
@@ -11,3 +11,29 @@ export const checkCoords = async ({lat, lng}: CoordsInterface): Promise<any> => 
     }
 };
 
+const degreesToRadians = (degrees: number) => {
+    return degrees * Math.PI / 180;
+};
+
+export const distanceInKmBetweenEarthCoordinates = (user: CoordsInterface, car: CarInterface) => {
+    const EARTH_RADIUS = 6371;
+
+    const dLat = degreesToRadians(car.lat-user.lat);
+    const dLon = degreesToRadians(car.lng-user.lng);
+
+    const lat1 = degreesToRadians(user.lat);
+    const lat2 = degreesToRadians(car.lat);
+
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return EARTH_RADIUS * c * 1000;
+};
+
+export const  sortNearestCar = (user: CoordsInterface, cars: CarInterface[]) => cars.sort((a:CarInterface, b: CarInterface) => {
+    if (distanceInKmBetweenEarthCoordinates(user, a) > distanceInKmBetweenEarthCoordinates(user, b)) {
+        return 1; }
+    if (distanceInKmBetweenEarthCoordinates(user, a) < distanceInKmBetweenEarthCoordinates(user, b)) {
+        return -1; }
+    return 0;
+});

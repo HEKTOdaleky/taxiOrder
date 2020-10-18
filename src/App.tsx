@@ -4,8 +4,6 @@ import OrderPage from './containers/OrderPage';
 import './App.scss';
 
 function App() {
-    // @ts-ignore
-    console.log(window.google);
   return (
       <Router>
         <Switch>

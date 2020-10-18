@@ -27,8 +27,6 @@ const OrderPage: React.FC<OrderPageInterface> = ({ getAvailableCarsData, orderSt
         getAvailableCarsData();
     }, []);
 
-    console.log('orderStore.availableCars', orderStore.availableCars);
-
     return (
         <div color='grey' className={styles['order-page']}>
             <OrderTaxi

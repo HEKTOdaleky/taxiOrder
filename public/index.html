@@ -18,4 +18,27 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <script>
+    ;(function(window) {
+      var s = document.createElement('script')
+      s.type = 'text/javascript'
+      s.async = true
+      s.src = './widget/index.js'
+      s.onload = () => {
+        var s_s = document.getElementsByTagName('head')[0]
+        s_s.insertAdjacentHTML(
+                'beforeend',
+                `<link rel="stylesheet" type="text/css" href="./widget/index.css" />`,
+        )
+        reactWidget.init({
+          environment: 'dev',
+          authId: 'xxxxxxx',
+          apiKey: 'xxxxxxx',
+        })
+        console.log('reactWidget Loaded!', reactWidget)
+      }
+      var x = document.getElementsByTagName('script')[0]
+      x.parentNode.insertBefore(s, x)
+    })(window, undefined)
+  </script>
 </html>

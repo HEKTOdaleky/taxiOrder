@@ -6,7 +6,7 @@ import {createOrder, getAvailableCarsData} from '../../redux/order/actions';
 import {RootState} from '../../redux';
 import {OrderState} from '../../redux/order/reducers';
 import {OrderInterface, RequestCarInterface} from '../../redux/order/models';
-import Loader from "../../reusable/Loader";
+import Loader from '../../reusable/Loader';
 
 const styles = require('./index.module.scss');
 
@@ -37,6 +37,7 @@ const OrderPage: React.FC<OrderPageInterface> = ({getAvailableCarsData, orderSto
                     createOrder={createOrder}
                     getAvailableCarsData={getAvailableCarsData}
                     availableCars={orderStore.availableCars}/>
+                    <div id='widget__container' style={{ width: '100px', height: '100px', backgroundColor: 'grey' }}/>
             </div>
         </>
     );

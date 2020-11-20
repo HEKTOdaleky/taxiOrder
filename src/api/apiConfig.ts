@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const apiUrl = 'http://localhost:8001';
+export const apiUrl = '';
 
 export const queryInstance = axios.create({
     baseURL: apiUrl,

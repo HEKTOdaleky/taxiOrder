@@ -37,7 +37,7 @@ const OrderPage: React.FC<OrderPageInterface> = ({getAvailableCarsData, orderSto
                     createOrder={createOrder}
                     getAvailableCarsData={getAvailableCarsData}
                     availableCars={orderStore.availableCars}/>
-                    <div id='widget__container' style={{ width: '100px', height: '100px', backgroundColor: 'grey' }}/>
+                    <div id='bandpay-widget' style={{ width: '300px', height: '360px', backgroundColor: 'grey' }}/>
             </div>
         </>
     );

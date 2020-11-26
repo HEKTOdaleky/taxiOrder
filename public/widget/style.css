@@ -16,6 +16,16 @@
 
 .ProjectLink_project-link__3AISt{position:relative;width:100%;max-width:720px;display:flex}.ProjectLink_project-link__form__10if4{width:51vw;max-width:720px;min-width:375px}
 
+.Checkbox_form-checkbox__Z6FBG{display:flex;align-items:center}.Checkbox_form-checkbox__input__YwvGB{position:absolute;left:-9999px}.Checkbox_form-checkbox__input__YwvGB+label{display:flex;align-items:flex-end;cursor:pointer;-webkit-user-select:none;-ms-user-select:none;user-select:none}.Checkbox_form-checkbox__input__YwvGB+label:before{display:block;content:"";margin-right:12px;border-radius:6px;width:18px;height:18px;background-image:url(static/media/checkbox.13ecb4db.svg);background-repeat:no-repeat;background-size:11px auto;-webkit-background-size:11px auto;-moz-background-size:11px auto;background-position:-20px 0}.Checkbox_form-checkbox__input-color-orange__Uvdw2+label:before{background-color:#FFBF0B}.Checkbox_form-checkbox__input__YwvGB:checked+label:before{background-position:3px 5px}.Checkbox_form-checkbox__input__YwvGB:disabled+label{cursor:not-allowed}.Checkbox_form-checkbox__input__YwvGB:disabled+label:before{background-position:-40px 0;background-color:#D6D9E4}.Checkbox_form-checkbox__input__YwvGB:disabled:checked+label:before{background-position:-60px 0}
+
+.AgreementCheckbox_agreement__2UVMd{display:flex;align-items:flex-start;margin-bottom:40px}.AgreementCheckbox_agreement__link__OZp-u{font-family:'Montserrat', sans-serif;color:#5d6bf5;margin-left:5px;text-decoration:none}
+
+.ProfileInformationForm_profile-information__title__2240m{margin-bottom:16px;text-align:center}.ProfileInformationForm_profile-information__sub-title__3E7_2{text-align:center;line-height:24px}.ProfileInformationForm_profile-information__block-spaces__21DNr{margin-bottom:24px}.ProfileInformationForm_profile-information__input-spaces__3UAZV{margin-bottom:12px}.ProfileInformationForm_profile-information__submit-button__zT7Xb{white-space:nowrap;margin:0 auto}.ProfileInformationForm_profile-information__form__15wii{margin-bottom:18px}
+
+.ContactInfo_public-profile__2L6Us{width:51vw;max-width:720px;min-width:375px}
+
+.ConfirmCode_confirm__2VBxI{display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:0;padding:40px 0}.ConfirmCode_confirm__container__5QX3N{width:100%;max-width:720px;box-shadow:0px 2px 16px rgba(0,0,0,0.1);border-radius:4px;overflow:hidden}.ConfirmCode_confirm__title__Oql2h{margin-bottom:16px;max-width:332px;text-align:center}.ConfirmCode_confirm__description__2yF35{margin-bottom:40px;max-width:332px;text-align:center}.ConfirmCode_confirm__pin-form__3pw7_{margin-bottom:40px}.ConfirmCode_confirm__submit-button__12Hqe{margin-bottom:16px}.ConfirmCode_confirm__link__55Vyq{text-decoration:none;text-align:center}.ConfirmCode_confirm__footer__2kyhz{border-radius:0}.ConfirmCode_confirm__label-error__3TZpO{margin-top:10px;height:13px;text-align:center}
+
 *{box-sizing:border-box}html{height:100%}body{box-sizing:border-box;min-height:100%}
 
 

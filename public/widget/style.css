@@ -30,7 +30,10 @@
 
 .Signin_sign-in__2RwkX{display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:0}.Signin_sign-in__container__LaXvX{width:100%;max-width:720px}.Signin_sign-in__title__3hV8k{margin-bottom:16px}.Signin_sign-in__description__2y0Ds{margin-bottom:24px}.Signin_sign-in__footer__krOKV{border-radius:0}
 
-*{box-sizing:border-box}html{height:100%}body{box-sizing:border-box;min-height:100%}
+*{box-sizing:border-box}html{height:100%}body{box-sizing:border-box;min-height:100%}.app__container{width:100%;height:100%;position:relative}
+
+.Loader_loader__3ZSbP{position:absolute;display:flex;align-items:center;flex-direction:column;justify-content:center;top:0;bottom:0;left:0;right:0;height:120%;background-color:#fff;z-index:999999}.Loader_loader__icon__1i--x{display:block;width:231.4px;height:53.56px;background-image:url(static/media/loader.e0134b45.svg);background-repeat:no-repeat;background-size:cover;animation:Loader_heartbeat__3Vo9u 1.8s infinite}@keyframes Loader_heartbeat__3Vo9u{0%{transform:scale(1)}25%{transform:scale(1.1)}50%{transform:scale(1)}75%{transform:scale(1.1)}100%{transform:scale(1)}}
+
 
 
 /*# sourceMappingURL=style.css.map*/

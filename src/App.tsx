@@ -6,8 +6,6 @@ import Cookies from "js-cookie";
 
 
 function App() {
-    console.log('TAXI', Cookies.get('auth_token'));
-    console.log('TAXI',Cookies.get('refresh_token'))
   return (
       <Router>
         <Switch>

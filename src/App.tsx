@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import OrderPage from './containers/OrderPage';
 import './App.scss';
-import Cookies from "js-cookie";
 
 
 function App() {

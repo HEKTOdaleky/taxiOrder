@@ -14,24 +14,29 @@ body {
 }
 
 .main-widget__title {
-  color: #FC2B2B;
-  font-size: 35px;
+  font-family: lato sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
 }
 
 .main-widget__description {
-  color: green;
-  font-size: 30px;
+  font-family: lato sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
 }
 
 .main-widget__title {
-  color: #FC2B2B;
-  font-size: 35px;
-}
-
-.main-widget__button {
-  background-color: #FF9D0B;
+  font-family: lato sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
 }
 
 .main-widget__button-text {
-  color: aqua;
+  font-family: lato sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  height: 22px;
 }

@@ -1,8 +1,10 @@
 .order-page {
-  width: 100%;
   display: flex;
   justify-content: center;
   padding-top: 34px;
+
+  width: 300px;
+  height: 316px;
 
   &__widget {
     width: 361px;
